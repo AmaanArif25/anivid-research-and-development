@@ -76,6 +76,65 @@ const About: React.FC = () => {
                 <h1 className="text-4xl md:text-5xl font-serif text-slate-900 leading-tight tracking-tighter">
                   Pawankumar Rai, PhD<br/><span className="italic text-slate-400">Founder and Director</span>
                 </h1>
+                
+                {/* Unique Quote Integration */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, delay: 0.3 }}
+                  className="relative py-8 overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-transparent to-blue-50 opacity-50 -z-10"></div>
+                  <div className="relative">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '100%' }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.5, delay: 0.4 }}
+                      className="h-px bg-gradient-to-r from-transparent via-blue-700 to-transparent mb-4"
+                    />
+                    <div className="flex items-center justify-center">
+                      <motion.div 
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.6 }}
+                        className="relative inline-block"
+                      >
+                        <motion.span
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: 0.8 }}
+                          className="absolute -left-8 top-1/2 -translate-y-1/2 text-2xl md:text-3xl text-blue-700 font-serif"
+                        >
+                          "
+                        </motion.span>
+                        <p className="text-lg md:text-xl font-serif italic text-blue-700 leading-relaxed px-6 text-center">
+                          Scientist by thought. Entrepreneur by action. Storyteller by soul
+                        </p>
+                        <motion.span
+                          initial={{ opacity: 0, x: 20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: 1 }}
+                          className="absolute -right-8 top-1/2 -translate-y-1/2 text-2xl md:text-3xl text-blue-700 font-serif"
+                        >
+                          "
+                        </motion.span>
+                      </motion.div>
+                    </div>
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '100%' }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.5, delay: 1.2 }}
+                      className="h-px bg-gradient-to-r from-transparent via-blue-700 to-transparent mt-4"
+                    />
+                  </div>
+                </motion.div>
+                
                 <h2 className="text-2xl font-serif italic text-slate-800">Our Story</h2>
                 <p className="text-base text-slate-600 font-light leading-relaxed">
                   ANIVID Research and Development Private Limited was founded with a clear purpose, to transform diagnostics by making them faster, simpler, and more accessible. Under the visionary leadership of Pawankumar Rai, ANIVID emerged as a platform where scientific rigor meets social impact.
