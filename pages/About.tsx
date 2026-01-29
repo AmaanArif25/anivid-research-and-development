@@ -63,47 +63,41 @@ const About: React.FC = () => {
   return (
     <div ref={containerRef} className="w-full bg-white overflow-hidden overflow-x-hidden">
       {/* Refined Hero / Story Section */}
-      <section className="relative section">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col gap-3 mb-12"
-          >
-            <div className="flex items-center gap-3">
-              <motion.span initial={{ width: 0 }} whileInView={{ width: 30 }} className="h-px bg-blue-700" transition={{ duration: 1 }} />
-              <span className="text-blue-700 font-bold tracking-[0.4em] uppercase text-[7px]">ANIVID Research and Development Private Limited</span>
-            </div>
-            <h1 className="text-responsive-4xl font-serif text-slate-900 leading-tight tracking-tighter">
-              Pawankumar Rai, PhD<br/><span className="italic text-slate-400">Founder and Director</span>
-            </h1>
-          </motion.div>
-
-          <div className="grid-responsive lg:grid-cols-2 gap-12 items-start mb-24">
+      <section className="relative section pt-12 md:pt-16">
+        <div className="container max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left Column - All Text Content */}
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-6">
               <div className="space-y-4">
-                <h2 className="text-responsive-2xl font-serif italic text-slate-800">Our Story</h2>
-                <p className="text-responsive-base text-slate-600 font-light leading-relaxed text-justify-pro">
+                <div className="flex items-center gap-3">
+                  <motion.span initial={{ width: 0 }} whileInView={{ width: 30 }} className="h-px bg-blue-700" transition={{ duration: 1 }} />
+                  <span className="text-blue-700 font-bold tracking-[0.4em] uppercase text-[7px]">ANIVID Research and Development Private Limited</span>
+                </div>
+                <h1 className="text-4xl md:text-5xl font-serif text-slate-900 leading-tight tracking-tighter">
+                  Pawankumar Rai, PhD<br/><span className="italic text-slate-400">Founder and Director</span>
+                </h1>
+                <h2 className="text-2xl font-serif italic text-slate-800">Our Story</h2>
+                <p className="text-base text-slate-600 font-light leading-relaxed">
                   ANIVID Research and Development Private Limited was founded with a clear purpose, to transform diagnostics by making them faster, simpler, and more accessible. Under the visionary leadership of Pawankumar Rai, ANIVID emerged as a platform where scientific rigor meets social impact.
                 </p>
-                <p className="text-responsive-base text-slate-600 font-light leading-relaxed text-justify-pro">
+                <p className="text-base text-slate-600 font-light leading-relaxed">
                   The company brings together expertise in chemistry, biosensing, electronics, and digital technologies to develop innovative diagnostic tools that address critical healthcare and safety challenges.
                 </p>
                 <div className="pt-4 border-t border-slate-100">
-                  <h3 className="text-responsive-xl font-serif italic text-slate-800 mb-3">A Vision by Pawankumar Rai</h3>
-                  <p className="text-responsive-base text-slate-600 font-light leading-relaxed text-justify-pro">
+                  <h3 className="text-xl font-serif italic text-slate-800 mb-3">A Vision by Pawankumar Rai</h3>
+                  <p className="text-base text-slate-600 font-light leading-relaxed">
                     Pawankumar Rai envisioned ANIVID as more than a company, it is a mission to democratize diagnostics. His vision is rooted in the belief that early detection saves lives, and that advanced diagnostic technologies should not be limited by geography, infrastructure, or affordability.
                   </p>
                 </div>
               </div>
             </motion.div>
 
+            {/* Right Column - Founder Image */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.98 }} 
               whileInView={{ opacity: 1, scale: 1 }} 
               viewport={{ once: true }}
-              className="flex items-center justify-center h-full"
+              className="flex items-center justify-center"
             >
               <div className="relative group">
                 <img 
@@ -116,16 +110,17 @@ const About: React.FC = () => {
             </motion.div>
           </div>
         </div>
+      </section>
 
-        {/* Authored Works Section */}
-        <div className="border-t border-slate-50 pt-12 md:pt-16">
-          <div className="text-center mb-12">
-            <span className="text-blue-700 font-bold tracking-[0.5em] uppercase text-[7px] mb-2 block">Authorship & Publications</span>
-            <h2 className="text-responsive-3xl font-serif italic text-slate-900">Authored Works</h2>
-            <p className="text-responsive-sm text-slate-500 font-light mt-4 text-justify-pro max-w-3xl mx-auto">
-              A comprehensive collection of scientific literature and research insights authored by our founder, documenting the journey of translational research and biosensor innovation.
-            </p>
-          </div>
+      {/* Authored Works Section */}
+      <div className="border-t border-slate-50 pt-12 md:pt-16">
+        <div className="text-center mb-12">
+          <span className="text-blue-700 font-bold tracking-[0.5em] uppercase text-[7px] mb-2 block">Authorship & Publications</span>
+          <h2 className="text-responsive-3xl font-serif italic text-slate-900">Authored Works</h2>
+          <p className="text-responsive-sm text-slate-500 font-light mt-4 text-justify-pro max-w-3xl mx-auto">
+            A comprehensive collection of scientific literature and research insights authored by our founder, documenting the journey of translational research and biosensor innovation.
+          </p>
+        </div>
 
           <div className="grid-responsive md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-16 justify-items-center">
             <InteractiveBook 
@@ -247,7 +242,6 @@ const About: React.FC = () => {
             </motion.div>
           </div>
         </section>
-      </section>
 
       {/* Professional Background Section */}
       <section className="py-16 px-8 md:px-24 max-w-7xl mx-auto">
