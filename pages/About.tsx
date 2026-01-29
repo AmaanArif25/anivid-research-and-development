@@ -119,10 +119,10 @@ const About: React.FC = () => {
 
         {/* Authored Works Section */}
         <div className="border-t border-slate-50 pt-12 md:pt-16">
-          <div className="max-w-3xl mb-12">
+          <div className="text-center mb-12">
             <span className="text-blue-700 font-bold tracking-[0.5em] uppercase text-[7px] mb-2 block">Authorship & Publications</span>
             <h2 className="text-responsive-3xl font-serif italic text-slate-900">Authored Works</h2>
-            <p className="text-responsive-sm text-slate-500 font-light mt-4 text-justify-pro">
+            <p className="text-responsive-sm text-slate-500 font-light mt-4 text-justify-pro max-w-3xl mx-auto">
               A comprehensive collection of scientific literature and research insights authored by our founder, documenting the journey of translational research and biosensor innovation.
             </p>
           </div>
