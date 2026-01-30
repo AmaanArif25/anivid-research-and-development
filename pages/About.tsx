@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import '../styles/about.css';
+import InteractiveBackground from '../components/InteractiveBackground';
 
 const InteractiveBook: React.FC<{ front: string; back: string; title: string; subtitle: string; amazonLink?: string }> = ({ front, back, title, subtitle, amazonLink }) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -61,7 +62,8 @@ const About: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div ref={containerRef} className="w-full bg-white overflow-hidden overflow-x-hidden">
+    <InteractiveBackground>
+      <div ref={containerRef} className="w-full bg-white overflow-hidden overflow-x-hidden">
       {/* Refined Hero / Story Section */}
       <section className="relative section pt-12 md:pt-16">
         <div className="container max-w-5xl mx-auto">
@@ -703,6 +705,7 @@ const About: React.FC = () => {
         </div>
       </section>
     </div>
+    </InteractiveBackground>
   );
 };
 
