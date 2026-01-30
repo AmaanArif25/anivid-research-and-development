@@ -198,6 +198,160 @@ const LineChart = () => {
   );
 };
 
+// Featured Product Component with Video and Description
+const FeaturedProduct: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState("");
+
+  const products = [
+    {
+      video: "/videos/grok-video-623b6740-b007-4304-bf00-3726b52a3656.mp4",
+      readMoreImage: "/service/All Flyers_22112025_updated_page-0002.jpg",
+      logo: "/tm/Screenshot 2026-01-31 000352.png",
+      title: "HemScans+",
+      description: "HemScans+ is a next-generation NFC-enabled, paper-based blood test strip designed for rapid and reliable sickle cell screening. Using chromogenic detection, it clearly identifies Hb and HbS markers from a single drop of blood and wirelessly transmits results to a smartphone via NFC. With instant digital readouts, secure cloud storage, and a clean medical interface, HemScans+ delivers smart, fast, and accurate diagnostics in a compact, point-of-care format."
+    },
+    {
+      video: "/videos/grok-video-ad10dfeb-2a51-4dfb-a2da-0e079b78a3d4.mp4",
+      readMoreImage: "/service/All Flyers_22112025_updated_page-0003.jpg",
+      logo: "/tm/Screenshot 2026-01-31 000427.png",
+      title: "PranaXpert",
+      description: "PranaXpert is an innovative, paper-based chromogenic test strip designed for breath-based, non-invasive disease detection. By analyzing chemical markers from a single breath, it enables rapid multi-analyte screening for conditions such as tuberculosis, asthma, COPD, and kidney and liver dysfunction. Portable, affordable, and biodegradable, PranaXpert delivers fast, point-of-care diagnostics-transforming breath into actionable clinical insights."
+    },
+    {
+      video: "public/videos/grok-video-195799f1-15ab-4c29-9302-6ee5e79fac62.mp4",
+      readMoreImage: "/service/All Flyers_22112025_updated_page-0004.jpg",
+      logo: "/tm/Screenshot 2026-01-31 010302.png",
+      title: "MetAly5T™",
+      description: "MetAly5T™ is a paper-based, chromogenic test strip engineered for rapid five-in-one detection of toxic heavy metals- arsenic, lead, cadmium, chromium, and mercury. With distinct reaction zones and clear colorimetric responses, it enables simple, reliable screening of environmental contamination. Designed for precision, portability, and visual clarity, MetAly5T™ delivers efficient multi-metal detection in a single, easy-to-use strip."
+    },
+    {
+      video: "public/videos/grok-video-f5229812-5098-47b9-859a-38f071c68f4e.mp4",
+      readMoreImage: "public/service/All Flyers_22112025_updated_page-0005.jpg",
+      logo: "/tm/Screenshot 2026-01-31 010856.png",
+      title: "ONEyTRA™",
+      description: "ONEyTRA™ is a chromogenic, paper-based detection platform designed for rapid identification of adulteration in edible oils and ghee. Using precise colorimetric reactions, it visually differentiates pure samples from those containing chemical adulterants, artificial dyes, mixed oils, or animal-derived fats. With clear color references and easy interpretation, ONEyTRA™ offers a fast, reliable, and user-friendly solution for food safety and quality assurance."
+    }
+  ];
+
+  const openModal = (imagePath: string) => {
+    setModalImage(imagePath);
+    setIsModalOpen(true);
+  };
+
+  return (
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="col-span-full mb-12"
+      >
+        <div className="space-y-16">
+          {products.map((product, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center bg-white border border-slate-100 rounded-lg p-6 md:p-8 shadow-sm ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}
+            >
+              {/* Video Column */}
+              <motion.div 
+                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className={`relative ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}
+              >
+                <div className="aspect-video rounded-lg overflow-hidden bg-slate-100 border border-slate-200">
+                  <video
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  >
+                    <source src={product.video} type="video/mp4" />
+                  </video>
+                </div>
+              </motion.div>
+
+              {/* Description Column */}
+              <motion.div 
+                initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="space-y-6"
+              >
+                <div>
+                  <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.5em] text-blue-700 mb-3 block">Featured Product</span>
+                  <div className="flex items-center mb-4">
+                    {product.logo && (
+                      <img 
+                        src={product.logo} 
+                        alt={`${product.title} logo`}
+                        className="h-16 md:h-20 w-auto object-contain"
+                      />
+                    )}
+                  </div>
+                </div>
+                
+                <p className="text-slate-600 font-light text-sm md:text-base leading-relaxed text-justify">
+                  {product.description}
+                </p>
+
+                <motion.button
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => openModal(product.readMoreImage)}
+                  className="inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-sm hover:bg-blue-700 transition-colors duration-300"
+                >
+                  <span>Read More</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </motion.button>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Modal for detailed image view */}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div className="relative max-w-6xl max-h-[90vh]">
+            <img 
+              src={modalImage} 
+              alt="Product Detailed Information" 
+              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            />
+            <button
+              className="absolute top-4 right-4 text-white bg-black/50 rounded-full p-2 hover:bg-black/70 transition-colors"
+              onClick={() => setIsModalOpen(false)}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
 const ProductItem: React.FC<{ title: string; caption: string; img: string }> = ({ title, caption, img }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -352,10 +506,88 @@ const Services: React.FC = () => {
           </p>
         </header>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
-          {products.map((p, i) => (
-            <ProductItem key={i} title={p.title} caption={p.caption} img={p.img} />
-          ))}
+        <div className="space-y-12">
+          <FeaturedProduct />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+            {products.map((p, i) => (
+              <ProductItem key={i} title={p.title} caption={p.caption} img={p.img} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trademark Logo Slider */}
+      <section className="py-12 md:py-16 bg-slate-50/30">
+        <div className="container max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <span className="text-blue-700 font-bold tracking-[0.5em] uppercase text-[7px] mb-2 block">Our Brands</span>
+            <h2 className="text-3xl md:text-4xl font-serif italic text-slate-900">Trademarks</h2>
+            <p className="text-sm md:text-base text-slate-500 font-light mt-4">Our innovative product portfolio</p>
+          </motion.div>
+
+          {/* Logo Slider */}
+          <div className="relative overflow-hidden">
+            <motion.div 
+              className="flex gap-8 md:gap-12 items-center"
+              animate={{
+                x: [0, -800],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 15,
+                  ease: "linear",
+                },
+              }}
+            >
+              {/* First set of logos */}
+              {[
+                "/tm/Screenshot 2026-01-31 000352.png",
+                "/tm/Screenshot 2026-01-31 000427.png", 
+                "/tm/Screenshot 2026-01-31 010302.png",
+                "/tm/Screenshot 2026-01-31 010856.png"
+              ].map((logo, index) => (
+                <motion.div
+                  key={`first-${index}`}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex-shrink-0 w-32 h-32 md:w-40 md:h-40 bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center p-4"
+                >
+                  <img 
+                    src={logo} 
+                    alt={`Trademark ${index + 1}`}
+                    className="max-w-full max-h-full object-contain transition-all duration-300"
+                  />
+                </motion.div>
+              ))}
+              
+              {/* Duplicate set for seamless loop */}
+              {[
+                "/tm/Screenshot 2026-01-31 000352.png",
+                "/tm/Screenshot 2026-01-31 000427.png", 
+                "/tm/Screenshot 2026-01-31 010302.png",
+                "/tm/Screenshot 2026-01-31 010856.png"
+              ].map((logo, index) => (
+                <motion.div
+                  key={`second-${index}`}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex-shrink-0 w-32 h-32 md:w-40 md:h-40 bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center p-4"
+                >
+                  <img 
+                    src={logo} 
+                    alt={`Trademark ${index + 1}`}
+                    className="max-w-full max-h-full object-contain transition-all duration-300"
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 

@@ -52,9 +52,24 @@ const Home: React.FC = () => {
 
   return (
     <div className="w-full bg-white selection:bg-blue-100 overflow-x-hidden">
-      {/* Cinematic Hero */}
+      {/* Cinematic Hero with Video Background */}
       <section className="relative hero-min-height flex items-center justify-center overflow-hidden section">
-        <div className="container max-w-5xl mx-auto">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/bg/Make_this_dynamicss_1080p_202601310142.mp4" type="video/mp4" />
+          </video>
+          {/* Translucent Overlay */}
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
+        </div>
+        
+        <div className="container max-w-5xl mx-auto relative z-10">
           <motion.div 
             style={{ y: yText, opacity }}
             className="z-10 text-center"
@@ -62,7 +77,7 @@ const Home: React.FC = () => {
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              className="h-px bg-blue-700 w-8 md:w-10 lg:w-12 mx-auto mb-6 md:mb-8 origin-center"
+              className="h-px bg-blue-400 w-8 md:w-10 lg:w-12 mx-auto mb-6 md:mb-8 origin-center"
               transition={{ duration: 1.5, ease: "circOut" }}
             />
             
@@ -70,11 +85,11 @@ const Home: React.FC = () => {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl md:text-5xl lg:text-6xl font-serif text-slate-900 leading-[1.1] tracking-tight mb-6 md:mb-8"
+              className="text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-[1.1] tracking-tight mb-6 md:mb-8"
             >
               Pioneering Progress in Biosensor.<br/>
               Innovating Diagnostics.<br/>
-              <span className="italic text-slate-400">Empowering Healthcare.</span> <br/>
+              <span className="italic text-blue-100">Empowering Healthcare.</span> <br/>
               Protecting Lives.
             </motion.h1>
 
@@ -82,9 +97,9 @@ const Home: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 1 }}
-              className="text-base text-slate-600 font-light leading-relaxed max-w-3xl mx-auto mb-8 md:mb-12"
+              className="text-base text-blue-50 font-light leading-relaxed max-w-3xl mx-auto mb-8 md:mb-12"
             >
-              <span className="font-semibold text-slate-900">ANIVID Research and Development Private Limited</span> is a research-driven biotechnology company dedicated to pioneering next-generation biosensors and point-of-care diagnostic technologies. Founded on the vision of  <span className="font-medium text-slate-900">Pawankumar Rai</span>, ANIVID integrates science, engineering, and digital innovation to create affordable, rapid, and accessible diagnostic solutions for healthcare and consumer safety.
+              <span className="font-semibold text-white">ANIVID Research and Development Private Limited</span> is a research-driven biotechnology company dedicated to pioneering next-generation biosensors and point-of-care diagnostic technologies. Founded on the vision of  <span className="font-medium text-white">Pawankumar Rai</span>, ANIVID integrates science, engineering, and digital innovation to create affordable, rapid, and accessible diagnostic solutions for healthcare and consumer safety.
             </motion.p>
             
             <motion.div
@@ -93,17 +108,17 @@ const Home: React.FC = () => {
               transition={{ duration: 1, delay: 1 }}
               className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center"
             >
-              <Link to="/services" className="px-8 py-3.5 bg-slate-900 text-white text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-blue-700 transition-all shadow-md text-center">
+              <Link to="/services" className="px-8 py-3.5 bg-white/20 backdrop-blur-sm text-white text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-white/30 transition-all shadow-md text-center border border-white/20">
                 Explore Tech
               </Link>
-              <Link to="/contact" className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] border-b border-slate-900 pb-1 hover:text-blue-700 hover:border-blue-700 transition-all">
+              <Link to="/contact" className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] border-b border-white pb-1 hover:text-blue-200 hover:border-blue-200 transition-all text-white">
                 Partner With Us
               </Link>
             </motion.div>
           </motion.div>
 
           {/* Subtle Background Elements */}
-          <motion.div style={{ y: yBg }} animate={{ opacity: [0.2, 0.4, 0.2] }} transition={{ repeat: Infinity, duration: 15 }} className="absolute top-1/4 -right-10 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-blue-50/40 rounded-full blur-[40px] sm:blur-[60px] md:blur-[80px] -z-0" />
+          <motion.div style={{ y: yBg }} animate={{ opacity: [0.2, 0.4, 0.2] }} transition={{ repeat: Infinity, duration: 15 }} className="absolute top-1/4 -right-10 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-blue-400/20 rounded-full blur-[40px] sm:blur-[60px] md:blur-[80px] -z-0" />
         </div>
       </section>
 
@@ -188,9 +203,24 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Focus Section */}
-      <section className="section border-t border-slate-50">
-        <div className="container max-w-5xl mx-auto">
+      {/* Focus Section with Video Background */}
+      <section className="section border-t border-slate-50 relative overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/bg/Give_me_complete_1080p_202601310148.mp4" type="video/mp4" />
+          </video>
+          {/* Translucent Overlay */}
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
+        </div>
+        
+        <div className="container max-w-5xl mx-auto relative z-10">
           {/* Centered Content Section */}
           <div className="text-center mb-16">
             <motion.div 
@@ -200,12 +230,12 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="space-y-6 max-w-4xl mx-auto"
             >
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif leading-tight tracking-tight mb-6">Who We Are</h2>
-              <p className="text-base md:text-lg text-slate-600 font-light leading-relaxed mb-8">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif leading-tight tracking-tight mb-6 text-white">Who We Are</h2>
+              <p className="text-base md:text-lg text-blue-50 font-light leading-relaxed mb-8">
                 ANIVID is focused on developing paper-based chromogenic biosensors, NFC-enabled smart diagnostic devices, and digital health-integrated solutions that bridge the gap between laboratory diagnostics and real-world point-of-care applications especially in resource-limited settings.
               </p>
               <div className="pt-4">
-                <Link to="/about" className="inline-block px-8 py-3.5 border border-slate-200 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-slate-50 transition-all">
+                <Link to="/about" className="inline-block px-8 py-3.5 border border-white/30 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-white/10 transition-all text-white">
                   About Founder
                 </Link>
               </div>

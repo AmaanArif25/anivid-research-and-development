@@ -5,7 +5,6 @@ import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import CustomCursor from './components/CustomCursor';
 import Footer from './components/Footer';
-import InteractiveBackground from './components/InteractiveBackground';
 import './styles/global.css';
 
 // Pages
@@ -40,20 +39,18 @@ const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 const App: React.FC = () => {
   return (
     <Router>
-      <InteractiveBackground>
-        <CustomCursor />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
-          <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
-          <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
-          <Route path="/team-panther" element={<PageWrapper><TeamPanther /></PageWrapper>} />
-          <Route path="/pluke" element={<PageWrapper><Pluke /></PageWrapper>} />
-          <Route path="/sapling" element={<PageWrapper><Sapling /></PageWrapper>} />
-          <Route path="/blog" element={<PageWrapper><Blog /></PageWrapper>} />
-          <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
-        </Routes>
-      </InteractiveBackground>
+      <CustomCursor />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
+        <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
+        <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
+        <Route path="/team-panther" element={<PageWrapper><TeamPanther /></PageWrapper>} />
+        <Route path="/pluke" element={<PageWrapper><Pluke /></PageWrapper>} />
+        <Route path="/sapling" element={<PageWrapper><Sapling /></PageWrapper>} />
+        <Route path="/blog" element={<PageWrapper><Blog /></PageWrapper>} />
+        <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+      </Routes>
     </Router>
   );
 };

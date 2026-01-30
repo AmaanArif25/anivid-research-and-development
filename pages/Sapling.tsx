@@ -1,6 +1,206 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import '../styles/about.css';
+
+// Image Slider Component
+const ImageSlider: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // 20 unique images related to focus areas (no human-related images)
+  const images = [
+    {
+      url: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80",
+      category: "Education",
+      title: "Knowledge Growth"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=80",
+      category: "Healthcare", 
+      title: "Medical Innovation"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=800&q=80",
+      category: "Nutrition",
+      title: "Healthy Nutrition"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80",
+      category: "Poverty Alleviation",
+      title: "Economic Growth"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80",
+      category: "Environmental Sustainability",
+      title: "Green Future"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      category: "Women and Child Development",
+      title: "Empowerment"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1559028006-44a26f8c2c32?w=800&q=80",
+      category: "Skill Development",
+      title: "Learning Skills"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80",
+      category: "Social Awareness",
+      title: "Community Support"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80",
+      category: "Education",
+      title: "Digital Learning"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
+      category: "Healthcare",
+      title: "Health Technology"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+      category: "Nutrition",
+      title: "Organic Food"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
+      category: "Poverty Alleviation",
+      title: "Sustainable Development"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1540206395-68808572332f?w=800&q=80",
+      category: "Environmental Sustainability",
+      title: "Clean Energy"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80",
+      category: "Women and Child Development",
+      title: "Future Leaders"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
+      category: "Skill Development",
+      title: "Professional Growth"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80",
+      category: "Social Awareness",
+      title: "Community Building"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&q=80",
+      category: "Environmental Sustainability",
+      title: "Nature Conservation"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
+      category: "Education",
+      title: "Rural Education"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&q=80",
+      category: "Healthcare",
+      title: "Wellness Programs"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80",
+      category: "Nutrition",
+      title: "Sustainable Agriculture"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  const goToPrevious = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  return (
+    <div className="relative w-full h-96 md:h-[500px] overflow-hidden rounded-2xl bg-slate-100">
+      <div className="relative h-full">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ x: 300, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -300, opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <img
+              src={images[currentIndex].url}
+              alt={images[currentIndex].title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+              <motion.div
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <span className="text-xs md:text-sm font-medium uppercase tracking-wider text-blue-200">
+                  {images[currentIndex].category}
+                </span>
+                <h3 className="text-xl md:text-3xl font-serif italic mt-2">
+                  {images[currentIndex].title}
+                </h3>
+              </motion.div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={goToPrevious}
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-all duration-300 z-10"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        onClick={goToNext}
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-all duration-300 z-10"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      {/* Dots Indicator */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex
+                ? "bg-white w-8"
+                : "bg-white/50 hover:bg-white/75"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Sapling: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -215,6 +415,23 @@ const Sapling: React.FC = () => {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Dynamic Image Slider Section */}
+        <div className="border-t border-slate-50 pt-16 mt-16">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <span className="text-blue-700 font-bold tracking-[0.5em] uppercase text-[7px] mb-2 block">Our Impact</span>
+              <h2 className="text-3xl font-serif italic text-slate-900">Transforming Lives Across Communities</h2>
+            </motion.div>
+
+            <ImageSlider />
           </div>
         </div>
 
