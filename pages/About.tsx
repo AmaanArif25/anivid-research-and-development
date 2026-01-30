@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import '../styles/about.css';
-import InteractiveBackground from '../components/InteractiveBackground';
 
 const InteractiveBook: React.FC<{ front: string; back: string; title: string; subtitle: string; amazonLink?: string }> = ({ front, back, title, subtitle, amazonLink }) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -62,8 +61,7 @@ const About: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <InteractiveBackground>
-      <div ref={containerRef} className="w-full bg-white overflow-hidden overflow-x-hidden">
+    <div ref={containerRef} className="w-full bg-white overflow-hidden overflow-x-hidden">
       {/* Refined Hero / Story Section */}
       <section className="relative section pt-12 md:pt-16">
         <div className="container max-w-5xl mx-auto">
@@ -173,50 +171,8 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Authored Works Section */}
-      <div className="border-t border-slate-50 pt-12 md:pt-16">
-        <div className="text-center mb-12">
-          <span className="text-blue-700 font-bold tracking-[0.5em] uppercase text-[7px] mb-2 block">Authorship & Publications</span>
-          <h2 className="text-responsive-3xl font-serif italic text-slate-900">Authored Works</h2>
-          <p className="text-responsive-sm text-slate-500 font-light mt-4 text-justify-pro max-w-3xl mx-auto">
-            A comprehensive collection of scientific literature and research insights authored by our founder, documenting the journey of translational research and biosensor innovation.
-          </p>
-        </div>
-
-          <div className="grid-responsive md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-16 justify-items-center">
-            <InteractiveBook 
-              title="" 
-              subtitle="The Science of Access" 
-              front="/book/unnamed (1).jpg"
-              back="/book/unnamed (2).jpg"
-              amazonLink="https://www.amazon.com/dp/B0XXXXXXX"
-            />
-            <InteractiveBook 
-              title="" 
-              subtitle="Molecular Engineering" 
-              front="/book/unnamed (3).jpg"
-              back="/book/unnamed (4).jpg"
-              amazonLink="https://www.amazon.com/dp/B0XXXXXXX"
-            />
-            <InteractiveBook 
-              title="" 
-              subtitle="Field Diagnostics" 
-              front="/book/unnamed (5).jpg"
-              back="/book/unnamed (6).jpg"
-              amazonLink="https://www.amazon.com/dp/B0XXXXXXX"
-            />
-            <InteractiveBook 
-              title="" 
-              subtitle="Healthcare Innovation" 
-              front="/book/unnamed (7).jpg"
-              back="/book/unnamed (8).jpg"
-              amazonLink="https://www.amazon.com/dp/B0XXXXXXX"
-            />
-          </div>
-        </div>
-
-        {/* Achievements Section */}
-        <section className="py-16 px-8 md:px-24 max-w-7xl mx-auto">
+      {/* Publications Section */}
+      <section className="py-16 px-8 md:px-24 max-w-7xl mx-auto bg-slate-50">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -693,6 +649,48 @@ const About: React.FC = () => {
         </div>
       </section>
 
+      {/* Novels Authored by Him Section */}
+      <div className="border-t border-slate-50 pt-12 md:pt-16">
+        <div className="text-center mb-12">
+          <span className="text-blue-700 font-bold tracking-[0.5em] uppercase text-[7px] mb-2 block">Authorship & Publications</span>
+          <h2 className="text-responsive-3xl font-serif italic text-slate-900">Novels authored by him</h2>
+          <p className="text-responsive-sm text-slate-500 font-light mt-4 text-justify-pro max-w-3xl mx-auto">
+            A comprehensive collection of scientific literature and research insights authored by our founder, documenting the journey of translational research and biosensor innovation.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 overflow-x-auto pb-4">
+          <InteractiveBook 
+            title="" 
+            subtitle="The Science of Access" 
+            front="/book/unnamed (1).jpg"
+            back="/book/unnamed (2).jpg"
+            amazonLink="https://www.amazon.com/dp/B0XXXXXXX"
+          />
+          <InteractiveBook 
+            title="" 
+            subtitle="Molecular Engineering" 
+            front="/book/unnamed (3).jpg"
+            back="/book/unnamed (4).jpg"
+            amazonLink="https://www.amazon.com/dp/B0XXXXXXX"
+          />
+          <InteractiveBook 
+            title="" 
+            subtitle="Field Diagnostics" 
+            front="/book/unnamed (5).jpg"
+            back="/book/unnamed (6).jpg"
+            amazonLink="https://www.amazon.com/dp/B0XXXXXXX"
+          />
+          <InteractiveBook 
+            title="" 
+            subtitle="Healthcare Innovation" 
+            front="/book/unnamed (7).jpg"
+            back="/book/unnamed (8).jpg"
+            amazonLink="https://www.amazon.com/dp/B0XXXXXXX"
+          />
+        </div>
+      </div>
+
       <section className="py-12 md:py-16 bg-slate-50 text-center relative overflow-hidden">
         <motion.div animate={{ opacity: [0.01, 0.02, 0.01] }} transition={{ duration: 10, repeat: Infinity }} className="absolute inset-0 flex items-center justify-center font-serif text-[15vw] md:text-[12vw] text-slate-900/5 pointer-events-none select-none">
           VISION & MISSION
@@ -705,7 +703,6 @@ const About: React.FC = () => {
         </div>
       </section>
     </div>
-    </InteractiveBackground>
   );
 };
 

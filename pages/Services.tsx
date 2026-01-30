@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, animate, useInView, useScroll, useTransform } from 'framer-motion';
-import InteractiveBackground from '../components/InteractiveBackground';
 
 // Interactive Circular Progress Component
 const CircularProgress = ({ value, label, color, size = 120 }: { value: number; label: string; color: string; size?: number }) => {
@@ -269,8 +268,7 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <InteractiveBackground>
-      <div className="w-full bg-white selection:bg-blue-50 overflow-x-hidden">
+    <div className="w-full bg-white selection:bg-blue-50 overflow-x-hidden">
       {/* Dynamic Hero Stats Section */}
       <section className="relative py-16 md:py-24 border-b border-slate-50 overflow-hidden">
         <motion.div 
@@ -466,7 +464,6 @@ const Services: React.FC = () => {
         </div>
       </section>
     </div>
-    </InteractiveBackground>
   );
 };
 

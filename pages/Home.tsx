@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import InteractiveBackground from '../components/InteractiveBackground';
 
 const Home: React.FC = () => {
   const { scrollY } = useScroll();
@@ -52,8 +51,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <InteractiveBackground>
-      <div className="w-full bg-white selection:bg-blue-100 overflow-x-hidden">
+    <div className="w-full bg-white selection:bg-blue-100 overflow-x-hidden">
       {/* Cinematic Hero */}
       <section className="relative hero-min-height flex items-center justify-center overflow-hidden section">
         <div className="container max-w-5xl mx-auto">
@@ -239,7 +237,6 @@ const Home: React.FC = () => {
         </div>
       </section>
     </div>
-    </InteractiveBackground>
   );
 };
 
