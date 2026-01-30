@@ -107,6 +107,87 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Collaboration Logo Slider */}
+      <section className="py-12 md:py-16 bg-slate-50/30">
+        <div className="container max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
+          >
+            <span className="text-blue-700 font-bold tracking-[0.5em] uppercase text-[7px] mb-2 block">Partnerships</span>
+            <h2 className="text-3xl md:text-4xl font-serif italic text-slate-900">Collaboration</h2>
+            <p className="text-sm md:text-base text-slate-500 font-light mt-4">Collaboration in Progress</p>
+          </motion.div>
+
+          {/* Logo Slider */}
+          <div className="relative overflow-hidden">
+            <motion.div 
+              className="flex gap-8 md:gap-12"
+              animate={{
+                x: [0, -1920],
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 20,
+                  ease: "linear",
+                },
+              }}
+            >
+              {/* First set of logos */}
+              {[
+                "/collaboration/unnamed.png",
+                "/collaboration/unnamed (1).png", 
+                "/collaboration/unnamed (2).png",
+                "/collaboration/Screenshot 2026-01-26 004220.png",
+                "/collaboration/Screenshot 2026-01-26 004213.png",
+                "/collaboration/download.png",
+                "/collaboration/download (1).png"
+              ].map((logo, index) => (
+                <motion.div
+                  key={`first-${index}`}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex-shrink-0 w-32 md:w-40 h-24 md:h-28 bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center p-4"
+                >
+                  <img 
+                    src={logo} 
+                    alt={`Collaboration Partner ${index + 1}`}
+                    className="max-w-full max-h-full object-contain transition-all duration-300 hover:grayscale-0"
+                  />
+                </motion.div>
+              ))}
+              
+              {/* Duplicate set for seamless loop */}
+              {[
+                "/collaboration/unnamed.png",
+                "/collaboration/unnamed (1).png", 
+                "/collaboration/unnamed (2).png",
+                "/collaboration/Screenshot 2026-01-26 004220.png",
+                "/collaboration/Screenshot 2026-01-26 004213.png",
+                "/collaboration/download.png",
+                "/collaboration/download (1).png"
+              ].map((logo, index) => (
+                <motion.div
+                  key={`second-${index}`}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex-shrink-0 w-32 md:w-40 h-24 md:h-28 bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center p-4"
+                >
+                  <img 
+                    src={logo} 
+                    alt={`Collaboration Partner ${index + 1}`}
+                    className="max-w-full max-h-full object-contain transition-all duration-300 hover:grayscale-0"
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Focus Section */}
       <section className="section border-t border-slate-50">
         <div className="container max-w-5xl mx-auto">
